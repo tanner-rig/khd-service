@@ -10,11 +10,8 @@ import { getJWT } from '../../utils/jwt';
 
 export async function main(event) {
   return new Promise(async (resolve, reject) => {
-    event.body = JSON.parse(event.body);
-
-    const data = event.body;
+    const data = JSON.parse(event.body);
     const datetime = getCurrentDatetime();
-    let existingEmail;
 
     console.info('Event Received: ', data);
 
@@ -22,6 +19,9 @@ export async function main(event) {
       console.error('Invalid Request: missing required params');
       return reject(failure(400, 'Invalid Request: missing required params'));
     }
+
+     // validate token
+     await requireAuth(event, reject, constants.JWT.TYPES.USER);
 
     // Hash the password
     bcrypt.hash(data.password, 11, async (err, hashedPassword) => {

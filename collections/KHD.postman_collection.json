@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "0ba7cf4a-5489-4209-b34d-0dbeaabbea48",
+		"name": "KHD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"tanner\",\n\t\"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"tanner\",\n\t\"lastName\": \"rigby\",\n\t\"firstName\": \"tanner\",\n\t\"role\": \"admin\",\n\t\"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "create client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone\": \"8015555555\",\n\t\"lastName\": \"rigby\",\n\t\"firstName\": \"tanner\",\n\t\"waiver\": false,\n\t\"contactMethod\": \"text\",\n\t\"fb\": \"@tannurr\",\n\t\"ig\": \"@tannurr\",\n\t\"sc\": \"@tannurr\",\n\t\"personalBackground\": \"parents are duches\",\n\t\"hairHistory\": \"just so damaged\",\n\t\"email\": \"tanner@tanner.com\",\n\t\"dob\": 1565907220,\n\t\"allergies\": null,\n\t\"preferredPayment\": \"venmo - @tanner-rigby\",\n\t\"notes\": \"very nice girl\",\n\t\"clientStatus\": \"ACTIVE\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update client",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone\": \"8015555555\",\n\t\"lastName\": \"rigby\",\n\t\"firstName\": \"tanner\",\n\t\"waiver\": false,\n\t\"contactMethod\": \"text\",\n\t\"fb\": \"@tannurr\",\n\t\"ig\": \"@tannurr\",\n\t\"sc\": \"@tannurr\",\n\t\"personalBackground\": \"parents are duches\",\n\t\"hairHistory\": \"just so damaged\",\n\t\"email\": \"tanner@tanner.com\",\n\t\"dob\": \"6/21/2019\",\n\t\"allergies\": null,\n\t\"preferredPayment\": \"venmo - @tanner-rigby\",\n\t\"notes\": \"very nice girl lots and lots of texty text all over the place about the person because I just have so much to say about them in these notes\",\n\t\"clientStatus\": \"ACTIVE\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/clients/{{clientId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								"{{clientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete client",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/clients/{{clientId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								"{{clientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get client",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/clients/{{clientId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								"{{clientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get clients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/clients/{{clientId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clients",
+								"{{clientId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "appointment",
+			"item": [
+				{
+					"name": "get appointments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/appointments?clientId={{clientId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "{{clientId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get appointment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/appointments/{{appointmentId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								"{{appointmentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete appointment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/appointments/{{appointmentId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								"{{appointmentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update appointment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"clientId\": \"\",\n\t\"service\": \"color\",\n\t\"productUsed\": \"aveda\",\n\t\"followUpDate\": 1565907328,\n\t\"followUpTime\": null,\n\t\"amountPaid\": 22.30,\n\t\"discountType\": \"black friday\",\n\t\"discountAmount\": 2.03,\n\t\"tip\": 10,\n\t\"time\": null,\n\t\"duration\": 40,\n\t\"date\": 1565907328,\n\t\"milesDriven\": 54,\n\t\"location\": \"home\",\n\t\"notes\": \"lots of notes here\",\n\t\"retailItemsSold\": \"conditioner\",\n\t\"retailItemsAmount\": 18.09\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/appointments/{{appointmentId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								"{{appointmentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create appointment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"clientId\": \"\",\n\t\"service\": \"color\",\n\t\"productUsed\": \"aveda\",\n\t\"followUpDate\": 1565907328,\n\t\"followUpTime\": null,\n\t\"amountPaid\": 22.30,\n\t\"discountType\": \"black friday\",\n\t\"discountAmount\": 2.03,\n\t\"tip\": 10,\n\t\"time\": null,\n\t\"duration\": 40,\n\t\"date\": 1565907328,\n\t\"milesDriven\": 54,\n\t\"location\": \"home\",\n\t\"notes\": \"lots of notes here\",\n\t\"retailItemsSold\": \"shampoo\",\n\t\"retailItemsAmount\": 15.09\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/appointments",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

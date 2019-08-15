@@ -31,7 +31,9 @@ provider:
     STAGE: ${self:provider.stage}
     DYNAMO_USERS_TABLE: ${file(./serverless.env.yml):${self:provider.stage}.DYNAMO_USERS_TABLE}
     DYNAMO_CLIENTS_TABLE: ${file(./serverless.env.yml):${self:provider.stage}.DYNAMO_CLIENTS_TABLE}
+    DYNAMO_APPOINTMENTS_TABLE: ${file(./serverless.env.yml):${self:provider.stage}.DYNAMO_APPOINTMENTS_TABLE}
     JWT_SECRET: ${file(./serverless.env.yml):${self:provider.stage}.JWT_SECRET}
+    USERNAMES: ${file(./serverless.env.yml):${self:provider.stage}.USERNAMES}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -64,7 +66,7 @@ functions:
     handler: functions/user/createUser.main
     events:
       - http:
-          path: /user/create
+          path: /user
           method: post
           cors: true
 
@@ -74,4 +76,84 @@ functions:
       - http:
           path: /user/login
           method: post
+          cors: true
+
+  createClient:
+    handler: functions/clients/createClient.main
+    events:
+      - http:
+          path: /clients
+          method: post
+          cors: true
+
+  deleteClient:
+    handler: functions/clients/deleteClient.main
+    events:
+      - http:
+          path: /clients/{clientId}
+          method: delete
+          cors: true
+
+  getClient:
+    handler: functions/clients/getClient.main
+    events:
+      - http:
+          path: /clients/{clientId}
+          method: get
+          cors: true
+
+  getClients:
+    handler: functions/clients/getClients.main
+    events:
+      - http:
+          path: /clients
+          method: get
+          cors: true
+
+  updateClient:
+    handler: functions/clients/updateClient.main
+    events:
+      - http:
+          path: /clients/{clientId}
+          method: put
+          cors: true
+
+  createAppointment:
+    handler: functions/appointments/createAppointment.main
+    events:
+      - http:
+          path: /appointments
+          method: post
+          cors: true
+
+  updateAppointment:
+    handler: functions/appointments/updateAppointment.main
+    events:
+      - http:
+          path: /appointments/{appointmentId}
+          method: put
+          cors: true
+
+  deleteAppointment:
+    handler: functions/appointments/deleteAppointment.main
+    events:
+      - http:
+          path: /appointments/{appointmentId}
+          method: delete
+          cors: true
+
+  getAppointment:
+    handler: functions/appointments/getAppointment.main
+    events:
+      - http:
+          path: /appointments/{appointmentId}
+          method: get
+          cors: true
+
+  getAppointments:
+    handler: functions/appointments/getAppointments.main
+    events:
+      - http:
+          path: /appointments
+          method: get
           cors: true
