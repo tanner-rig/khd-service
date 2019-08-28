@@ -53,6 +53,14 @@ provider:
       Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMO_CLIENTS_TABLE}*'
     - Effect: Allow
       Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMO_APPOINTMENTS_TABLE}*'
+    - Effect: Allow
+      Action:
         - lambda:InvokeFunction
       Resource:
         - Fn::Join:
