@@ -46,26 +46,5 @@ export async function main(event) {
         return reject(serverFailure('Server error getting the client', err));
       }
     }
-
-    // console.info('params: ', params);
-
-    try {
-      const result = await dynamoDbUtils.call('query', params);
-      const client = result.Items[0];
-
-      // console.info('result: ', result);
-
-      if (!client) {
-        return resolve(success({
-          status: 'No client found',
-          client: {}
-        }));
-      }
-
-      return resolve(success({ client }));
-    } catch (err) {
-      console.error('server error getting the client: ', err);
-      return reject(serverFailure('Server error getting the client', err));
-    }
   });
 }
