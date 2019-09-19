@@ -1,4 +1,4 @@
-service: lambda-starter
+service: khd-service
 
 plugins:
   - serverless-webpack
