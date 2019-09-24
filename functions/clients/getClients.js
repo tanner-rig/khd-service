@@ -26,7 +26,7 @@ export async function main(event) {
         return resolve(
           success({
             status: "No clients found",
-            clients: {},
+            clients: [],
           })
         );
       }

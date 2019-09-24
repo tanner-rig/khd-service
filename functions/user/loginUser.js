@@ -28,6 +28,9 @@ export async function main(event) {
       const result = await dynamoDbUtils.call('get', params);
       const user = result.Item;
 
+      // console.log('user: ', user)
+
+
       if (!user) {
         // username not found in our db
         return reject(failure(400, 'incorrect username/password combination'));
@@ -36,6 +39,8 @@ export async function main(event) {
       // Check if the password is correct
       bcrypt.compare(password, user.password || 'fail', (err, res) => {
         if (err) {
+          // console.log('error: ', err)
+
           console.error("error comparing the user's passwords: ", err.response);
           return reject(
             serverFailure(
@@ -49,7 +54,7 @@ export async function main(event) {
           // Passwords match
           // Delete the hashed password from the user obj so it's not returned to client
           delete user.password;
-
+          // console.log('match: ', res)
           return resolve(
             success({
               token: getJWT(user, constants.JWT.TYPES.USER),

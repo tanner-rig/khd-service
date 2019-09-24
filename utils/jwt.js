@@ -13,7 +13,7 @@ export function getJWT(data, type) {
     exp: Math.floor((Date.now() / 1000) + (60 * 60 * 24 * 30))
   };
 
-  return jwt.encode(payload, constants.JWT.SECRET);
+  return jwt.encode(payload, constants.JWT.SECRET);;
 }
 
 export function decode(token) {
