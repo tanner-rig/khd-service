@@ -20,7 +20,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs10.x
   stage: ${opt:stage, 'dev'}
   region: ${file(./serverless.env.yml):${self:provider.stage}.AWS_REGION}
 
