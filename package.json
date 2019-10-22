@@ -6,6 +6,7 @@
     "createUser": "AWS_PROFILE=serverless-admin serverless invoke local --function loginUser --path mocks/createUser.json",
     "loginUser": "AWS_PROFILE=serverless-admin serverless invoke local --function loginUser --path mocks/loginUser.json",
     "deploy": "serverless deploy",
+    "deploy-prod": "serverless --stage prod deploy",
     "start": "serverless --stage dev offline start"
   },
   "author": "Tanner Rigby",
