@@ -29,7 +29,7 @@ export async function main(event) {
 
       resolve(success({ status: 'appointment deleted successfully' }));
     } catch (e) {
-      console.error('server error setting appointment status to \'DELETED\': ', e.response);
+      console.error('server error setting appointment status to \'DELETED\': ', e);
       reject(serverFailure('Server error deleting the appointment', e.response));
     }
   });
