@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+import uuid from "uuid";
 
 import * as constants from "../../constants";
 import * as dynamoDbUtils from "../../utils/dynamo";
@@ -23,12 +23,12 @@ export async function main(event) {
       clientStatus: constants.USER_STATUS.ACTIVE,
       ...event.body,
       createdAt: datetime,
-      updatedAt: datetime,
+      updatedAt: datetime
     });
 
     const putParams = {
       TableName: constants.AWS.DYNAMO_CLIENTS_TABLE,
-      Item: client,
+      Item: client
     };
 
     // console.info("putParams: ", putParams);
@@ -43,10 +43,7 @@ export async function main(event) {
     } catch (err) {
       // console.error("error saving the client in the database: ", err);
       return reject(
-        serverFailure(
-          "Server error creating the client in the database",
-          err.response
-        )
+        serverFailure("Server error creating the client in the database", err)
       );
     }
   });

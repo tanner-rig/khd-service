@@ -51,8 +51,8 @@ export async function main(event) {
       // console.info('result: ', result);
       resolve(success({ status: 'client deleted successfully' }));
     } catch (e) {
-      console.error('server error setting client status to \'DELETED\': ', e.response);
-      reject(serverFailure('Server error deleting the client', e.response));
+      console.error('server error setting client status to \'DELETED\': ', e);
+      reject(serverFailure('Server error deleting the client', e));
     }
   });
 }

@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+import uuid from "uuid";
 
 import * as constants from "../../constants";
 import * as dynamoDbUtils from "../../utils/dynamo";
@@ -22,12 +22,12 @@ export async function main(event) {
       appointmentId: uuid.v4(),
       ...event.body,
       createdAt: datetime,
-      updatedAt: datetime,
+      updatedAt: datetime
     });
 
     const putParams = {
       TableName: constants.AWS.DYNAMO_APPOINTMENTS_TABLE,
-      Item: appointment,
+      Item: appointment
     };
 
     // console.info("putParams: ", putParams);
@@ -44,7 +44,7 @@ export async function main(event) {
       return reject(
         serverFailure(
           "Server error creating the appointment in the database",
-          err.response
+          err
         )
       );
     }
