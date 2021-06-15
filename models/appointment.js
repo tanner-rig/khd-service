@@ -3,6 +3,7 @@ import _ from "lodash";
 const appointment = {
   appointmentId: "",
   clientId: "",
+  amountCharged: "",
   amountPaid: "",
   apptStatus: "",
   date: "",
@@ -28,7 +29,7 @@ export function getAppointmentKeys() {
   return Object.keys(appointment);
 }
 
-export function getAppointment(data) {
+export function getAppointment(data, update) {
   const appointmentKeys = getAppointmentKeys();
   const prunedData = _.cloneDeep(data);
 
@@ -39,7 +40,7 @@ export function getAppointment(data) {
     if (index < 0) {
       // It doesn't exist, don't allow it to be added to db
       delete prunedData[key];
-    } else if (!value) {
+    } else if (!value && !update) {
       // No value, delete it
       delete prunedData[key];
     }

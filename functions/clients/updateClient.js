@@ -22,7 +22,7 @@ export async function main(event) {
 
     const datetime = getCurrentDatetime();
     const client = {
-      ...getClient(event.body),
+      ...getClient(event.body, true),
       updatedAt: datetime
     };
 

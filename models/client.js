@@ -23,7 +23,7 @@ const client = {
     return Object.keys(client);
   }
   
-  export function getClient(data) {
+  export function getClient(data, update) {
     const clientKeys = getClientKeys();
     const prunedData = _.cloneDeep(data);
   
@@ -34,7 +34,7 @@ const client = {
       if (index < 0) {
         // It doesn't exist, don't allow it to be added to db
         delete prunedData[key];
-      } else if (!value) {
+      } else if (!value && !update) {
         // No value, delete it
         delete prunedData[key];
       }
