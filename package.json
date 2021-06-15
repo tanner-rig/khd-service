@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "Lambda service for kylees hair designs",
   "scripts": {
-    "createUser": "AWS_PROFILE=serverless-admin serverless invoke local --function loginUser --path mocks/createUser.json",
+    "createUser": "AWS_PROFILE=serverless-admin serverless invoke local --function createUser --path mocks/createUser.json",
     "loginUser": "AWS_PROFILE=serverless-admin serverless invoke local --function loginUser --path mocks/loginUser.json",
     "deploy": "serverless deploy",
-    "deploy-prod": "serverless --stage prod deploy",
-    "start": "serverless --stage dev offline start"
+    "deploy-prod": "serverless deploy --stage prod",
+    "start": "serverless offline start --stage dev "
   },
   "author": "Tanner Rigby",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.14.5",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^7.1.5",
@@ -35,6 +36,6 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "source-map-support": "^0.5.13",
-    "uuid": "^3.3.3"
+    "uuid": "^8.3.2"
   }
 }

@@ -1,4 +1,4 @@
-import uuid from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 import * as constants from "../../constants";
 import * as dynamoDbUtils from "../../utils/dynamo";
@@ -19,7 +19,7 @@ export async function main(event) {
 
     // Create a new appointment
     const appointment = getAppointment({
-      appointmentId: uuid.v4(),
+      appointmentId: uuidv4(),
       ...event.body,
       createdAt: datetime,
       updatedAt: datetime

@@ -30,7 +30,6 @@ export async function main(event) {
 
       // console.log('user: ', user)
 
-
       if (!user) {
         // username not found in our db
         return reject(failure(400, 'incorrect username/password combination'));

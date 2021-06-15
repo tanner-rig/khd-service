@@ -1,27 +1,28 @@
-import _ from 'lodash';
-import bcrypt from 'bcryptjs';
+import _ from "lodash";
+import bcrypt from "bcryptjs";
 
-import * as constants from '../../constants';
-import * as dynamoDbUtils from '../../utils/dynamo';
-import { failure, serverFailure, success } from '../../utils/response';
-import { getCurrentDatetime } from '../../utils/time';
-import { getUser } from '../../models/user';
-import { getJWT } from '../../utils/jwt';
+import * as constants from "../../constants";
+import * as dynamoDbUtils from "../../utils/dynamo";
+import { failure, serverFailure, success } from "../../utils/response";
+import { getCurrentDatetime } from "../../utils/time";
+import { getUser } from "../../models/user";
+import { getJWT } from "../../utils/jwt";
 
 export async function main(event) {
   return new Promise(async (resolve, reject) => {
     const data = JSON.parse(event.body);
     const datetime = getCurrentDatetime();
 
-    console.info('Event Received: ', data);
+    console.info("Event Received: ", data);
 
     if (!data.username || !data.password) {
-      console.error('Invalid Request: missing required params');
-      return reject(failure(400, 'Invalid Request: missing required params'));
+      console.error("Invalid Request: missing required params");
+      return reject(failure(400, "Invalid Request: missing required params"));
     }
 
-     // validate token
-     await requireAuth(event, reject, constants.JWT.TYPES.USER);
+    // validate token
+    // comment for local user creation
+    await requireAuth(event, reject, constants.JWT.TYPES.USER);
 
     // Hash the password
     bcrypt.hash(data.password, 11, async (err, hashedPassword) => {
@@ -40,38 +41,38 @@ export async function main(event) {
         lastName: data.lastName,
         role: data.role,
         createdAt: datetime,
-        updatedAt: datetime
+        updatedAt: datetime,
       });
 
       const putParams = {
         TableName: constants.AWS.DYNAMO_USERS_TABLE,
-        Item: user
+        Item: user,
       };
 
-      console.info('putParams: ', putParams);
+      console.info("putParams: ", putParams);
 
       // write the user to the database
       try {
-        const response = await dynamoDbUtils.call('put', putParams);
+        const response = await dynamoDbUtils.call("put", putParams);
 
-        console.info('putResponse: ', response);
+        console.info("putResponse: ", response);
 
         const responseBody = {
           user: {
             username: user.username,
-            firstName: user.firstName || '',
-            lastName: user.lastName || '',
-            role: user.role
+            firstName: user.firstName || "",
+            lastName: user.lastName || "",
+            role: user.role,
           },
-          token: getJWT(user, constants.JWT.TYPES.USER)
+          token: getJWT(user, constants.JWT.TYPES.USER),
         };
 
         return resolve(success(responseBody));
       } catch (err) {
-        console.error('error saving the user in the database: ', err);
+        console.error("error saving the user in the database: ", err);
         return reject(
           serverFailure(
-            'Server error creating the user in the database',
+            "Server error creating the user in the database",
             err.response
           )
         );

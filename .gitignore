@@ -5,3 +5,4 @@ node_modules
 .idea
 .DS_Store
 serverless.env.yml
+yarn-error.log
